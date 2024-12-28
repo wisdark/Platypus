@@ -1,0 +1,301 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+
+# The lines below are called `modelines`. See `:help modeline`
+# Feel free to remove those if you don't want/need to use them.
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+version: 2
+
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    - go generate ./...
+
+builds:
+  - id: platypus-server
+    main: cmd/platypus-server/main.go
+    binary: platypus-platypus-server
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - aix
+      - android
+      - darwin
+      - dragonfly
+      - freebsd
+      - illumos
+      - ios
+      - js
+      - linux
+      - netbsd
+      - openbsd
+      - plan9
+      - solaris
+      - wasip1
+      - windows
+    goarch:
+      - "386"
+      - amd64
+      - arm
+      - arm64
+      - loong64
+      - mips
+      - mips64
+      - mips64le
+      - mipsle
+      - ppc64
+      - ppc64le
+      - riscv64
+      - s390x
+      - wasm
+    ignore:
+      - goos: android
+        goarch: "386"
+      - goos: android
+        goarch: amd64
+      - goos: android
+        goarch: arm64
+      - goos: android
+        goarch: arm
+      - goos: ios
+        goarch: arm64
+      - goos: js
+        goarch: wasm
+      - goos: plan9
+        goarch: amd64
+      - goos: plan9
+        goarch: "386"
+      - goos: plan9
+        goarch: arm64
+      - goos: plan9
+        goarch: arm
+      - goos: wasip1
+        goarch: wasm
+      - goos: aix
+        goarch: ppc64
+      - goos: freebsd
+        goarch: "386"
+      - goos: freebsd
+        goarch: arm
+      - goos: freebsd
+        goarch: arm64
+      - goos: freebsd
+        goarch: amd64
+      - goos: netbsd
+        goarch: amd64
+      - goos: netbsd
+        goarch: "386"
+      - goos: netbsd
+        goarch: arm64
+      - goos: netbsd
+        goarch: arm
+      - goos: openbsd
+        goarch: amd64
+      - goos: openbsd
+        goarch: arm
+      - goos: openbsd
+        goarch: arm64
+      - goos: openbsd
+        goarch: "386"
+      - goos: solaris
+        goarch: amd64
+      - goos: dragonfly
+        goarch: amd64
+      - goos: illumos
+        goarch: amd64
+    ldflags:
+      - -s -w
+      - -X "github.com/WangYihang/Platypus/pkg/version.Version={{.Version}}"
+      - -X "github.com/WangYihang/Platypus/pkg/version.Commit={{.Commit}}"
+      - -X "github.com/WangYihang/Platypus/pkg/version.Date={{.Date}}"
+
+  - id: platypus-admin
+    main: cmd/platypus-admin/main.go
+    binary: platypus-admin
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - aix
+      - android
+      - darwin
+      - dragonfly
+      - freebsd
+      - illumos
+      - ios
+      - js
+      - linux
+      - netbsd
+      - openbsd
+      - plan9
+      - solaris
+      - wasip1
+      - windows
+    goarch:
+      - "386"
+      - amd64
+      - arm
+      - arm64
+      - loong64
+      - mips
+      - mips64
+      - mips64le
+      - mipsle
+      - ppc64
+      - ppc64le
+      - riscv64
+      - s390x
+      - wasm
+    ignore:
+      - goos: android
+        goarch: "386"
+      - goos: android
+        goarch: amd64
+      - goos: android
+        goarch: arm64
+      - goos: android
+        goarch: arm
+      - goos: ios
+        goarch: arm64
+      - goos: js
+        goarch: wasm
+      - goos: plan9
+        goarch: amd64
+      - goos: plan9
+        goarch: "386"
+      - goos: plan9
+        goarch: arm64
+      - goos: plan9
+        goarch: arm
+      - goos: wasip1
+        goarch: wasm
+      - goos: aix
+        goarch: ppc64
+      - goos: openbsd
+        goarch: arm
+      - goos: dragonfly
+        goarch: amd64
+    ldflags:
+      - -s -w
+      - -X "github.com/WangYihang/Platypus/pkg/version.Version={{.Version}}"
+      - -X "github.com/WangYihang/Platypus/pkg/version.Commit={{.Commit}}"
+      - -X "github.com/WangYihang/Platypus/pkg/version.Date={{.Date}}"
+
+  - id: platypus-agent
+    main: cmd/platypus-agent/main.go
+    binary: platypus-agent
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - aix
+      - android
+      - darwin
+      - dragonfly
+      - freebsd
+      - illumos
+      - ios
+      - js
+      - linux
+      - netbsd
+      - openbsd
+      - plan9
+      - solaris
+      - wasip1
+      - windows
+    goarch:
+      - "386"
+      - amd64
+      - arm
+      - arm64
+      - loong64
+      - mips
+      - mips64
+      - mips64le
+      - mipsle
+      - ppc64
+      - ppc64le
+      - riscv64
+      - s390x
+      - wasm
+    ignore:
+      - goos: android
+        goarch: "386"
+      - goos: android
+        goarch: amd64
+      - goos: android
+        goarch: arm64
+      - goos: android
+        goarch: arm
+      - goos: ios
+        goarch: arm64
+      - goos: js
+        goarch: wasm
+      - goos: plan9
+        goarch: amd64
+      - goos: plan9
+        goarch: "386"
+      - goos: plan9
+        goarch: arm64
+      - goos: plan9
+        goarch: arm
+      - goos: wasip1
+        goarch: wasm
+      - goos: aix
+        goarch: ppc64
+      - goos: openbsd
+        goarch: "386"
+      - goos: freebsd
+        goarch: amd64
+      - goos: illumos
+        goarch: amd64
+    ldflags:
+      - -s -w
+      - -X "github.com/WangYihang/Platypus/pkg/version.Version={{.Version}}"
+      - -X "github.com/WangYihang/Platypus/pkg/version.Commit={{.Commit}}"
+      - -X "github.com/WangYihang/Platypus/pkg/version.Date={{.Date}}"
+
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the results of `uname`.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - assets/*
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+upx:
+  -
+    # Whether to enable it or not.
+    enabled: true
+
+    # Filter by build ID.
+    ids: [ "platypus-server", "platypus-admin", "platypus-agent" ]
+
+    # Compress argument.
+    # Valid options are from '1' (faster) to '9' (better), and 'best'.
+    compress: best
+
+    # Whether to try LZMA (slower).
+    lzma: true
+
+    # Whether to try all methods and filters (slow).
+    brute: false
